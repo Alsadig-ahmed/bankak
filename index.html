@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معلومات الحساب البنكي</title>
+    <style>
+        body {
+            font-family: 'Arial', 'Tahoma', sans-serif;
+            direction: rtl;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .sections-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .account-section {
+            background-color: #d9534f;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .whatsapp-section {
+            background-color: #25D366;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .account-number {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .account-name {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .qr-image {
+            width: 200px;
+            height: 200px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .instructions {
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+            margin-top: auto;
+            padding: 0 10px;
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            transition: transform 0.2s;
+        }
+
+        .print-button:hover {
+            transform: scale(1.05);
+        }
+
+        .print-button::before {
+            content: "🖨️";
+            font-size: 18px;
+        }
+
+        .print-duplicate {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .sections-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .qr-image {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .print-button {
+                bottom: 10px;
+                left: 10px;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+
+        @media print {
+            body {
+                padding: 5px !important;
+                background-color: white !important;
+            }
+
+            .print-button {
+                display: none !important;
+            }
+
+            .container {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 5mm !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+
+            .card {
+                width: 48% !important;
+                height: 48% !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                transform: scale(0.95);
+                padding: 0 !important;
+            }
+
+            .print-duplicate {
+                display: block !important;
+            }
+
+            .sections-container {
+                display: flex !important;
+                margin-top: 0 !important;
+                gap: 2mm !important;
+            }
+
+            .account-section, 
+            .whatsapp-section {
+                background-color: white !important;
+                color: black !important;
+                border: 2px solid #000 !important;
+                padding: 10px !important;
+                margin: 10px 0 !important;
+                page-break-inside: avoid;
+            }
+
+            .qr-image {
+                border-color: #000 !important;
+                width: 100px !important;
+                height: 100px !important;
+            }
+
+            .account-number {
+                font-size: 16px !important;
+                margin: 10px 0 !important;
+            }
+
+            .account-name {
+                font-size: 14px !important;
+            }
+
+            .instructions {
+                font-size: 12px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-button" onclick="window.print()">
+        طباعة الصفحة
+    </div>
+
+    <div class="container">
+        <!-- Original Card -->
+        <div class="card">
+            <div class="sections-container">
+                <div class="account-section">
+                    <div class="account-number">رقم الحساب: 1234567</div>
+                    <div class="account-name">الاسم: الجيلي علي خالد عمر</div>
+                    <img src="./QRimage.jpg" alt="رمز الحساب البنكي" class="qr-image">
+                    <p class="instructions">
+                        يرجى مسح رمز الاستجابة السريعة باستخدام الكاميرا من داخل تطبيق بنكك
+                        <br>للحصول على رقم الحساب وإرسال المبلغ
+                    </p>
+                </div>
+
+                <div class="whatsapp-section">
+                    <h2>رقم واتساب لإرسال الإشعار:</h2>
+                    <div class="account-number">0123452399</div>
+                    <img src="./wa-QRcode.jpg" alt="رمز واتساب" class="qr-image">
+                    <p class="instructions">
+                        يرجى مسح رمز الاستجابة السريعة الخاص بالواتساب
+                        <br>لإرسال إشعار التحويل مباشرة
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Duplicate Card for Printing -->
+        <div class="card print-duplicate">
+            <div class="sections-container">
+                <div class="account-section">
+                    <div class="account-number">رقم الحساب: 1234567</div>
+                    <div class="account-name">الاسم: الجيلي علي خالد عمر</div>
+                    <img src="./QRimage.jpg" alt="رمز الحساب البنكي" class="qr-image">
+                    <p class="instructions">
+                        يرجى مسح رمز الاستجابة السريعة باستخدام الكاميرا من داخل تطبيق بنكك
+                        <br>للحصول على رقم الحساب وإرسال المبلغ
+                    </p>
+                </div>
+
+                <div class="whatsapp-section">
+                    <h2>رقم واتساب لإرسال الإشعار:</h2>
+                    <div class="account-number">0123452399</div>
+                    <img src="./wa-QRcode.jpg" alt="رمز واتساب" class="qr-image">
+                    <p class="instructions">
+                        يرجى مسح رمز الاستجابة السريعة الخاص بالواتساب
+                        <br>لإرسال إشعار التحويل مباشرة
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
